@@ -47,18 +47,14 @@ function app(p) {
   }
 
   p.mouseWheel = () => state.drop = true
+  p.touchEnded = () => state.drop = true
 
   function setupPeriodPositionUpdate(bottomPosition) {
-    console.log('bottom :', bottomPosition)
-    const easeOut = (t) => bottomPosition * p.bezierPoint(0, 0, 1, 1, t) + 12
+    const easeOut = (t) => bottomPosition * p.bezierPoint(0, 0, 2, 1, t) + 12
     let t = 0
     return function(updateY, y, drop) {
       if(drop && y < bottomPosition) {
-        t = t + 0.005
-        console.log(easeOut(t))
-        const next = bottomPosition * p.bezierPoint(0, 0, 0.58, 1, y/bottomPosition)
-
-        // updateY(y+1)
+        t = t + 0.002
         updateY(easeOut(t))
       }
     }

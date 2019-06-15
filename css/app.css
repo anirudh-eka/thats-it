@@ -109,9 +109,9 @@ p.larger {
 p.largest {
   font-size: 65px;
 }
-
+/* 
 @media screen and (max-width: 500px) {
   .canvas {
     width: 300px;
   }
-}
+} */
