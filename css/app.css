@@ -1,0 +1,117 @@
+body {
+  background-color: white;
+  font-family: Open Sans, Helvetica, sans-serif;
+  font-weight: 300;
+}
+
+.half-width {
+  display: inline-block;
+  margin: 0;
+  width: 145px;
+  /* background-color: blue; */
+  vertical-align: top;
+}
+
+.gutter {
+  /* background-color: green; */
+  display: inline-block;
+  margin: 0;
+  margin-top: -26px;
+  border: 0;
+  height: 801px;
+  width: 25px;
+  vertical-align: top;
+}
+
+.blank-space {
+  height: 240px;
+  /* background-color: red; */
+}
+
+.blank-space-2 {
+  height: 35px;
+  /* background-color: red; */
+}
+
+.blank-space-3 {
+  height: 179px;
+  /* background-color: red; */
+}
+
+.canvas {
+  width: 315px;
+  /* background-color: red; */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.break {
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-name: break;
+  animation-fill-mode: forwards;
+  transform-origin: bottom left;
+}
+
+@keyframes break {
+  from {
+    transform-origin: bottom left;
+  }
+  25% {
+    transform-origin: bottom left;
+    transform: rotate(-5deg);
+  }
+
+  65% {
+    transform-origin: bottom left;
+    transform: rotate(70deg);
+  }
+
+  to {
+    transform-origin: bottom left;
+    transform: rotate(65deg);
+  }
+}
+
+p.smallester {
+  font-size: 27px;
+}
+
+p.smallest {
+  font-size: 29px;
+}
+
+p.smaller {
+  font-size: 36px;
+}
+
+p.small {
+  font-size: 37px;
+}
+
+p {
+  font-size: 40px;
+  margin: 0;
+}
+
+p.mid-large {
+  font-size: 42px;
+}
+
+p.large {
+  font-size: 48px;
+}
+
+p.larger {
+  font-size: 58px;
+}
+
+p.largest {
+  font-size: 65px;
+}
+
+@media screen and (max-width: 500px) {
+  .canvas {
+    width: 300px;
+  }
+}
