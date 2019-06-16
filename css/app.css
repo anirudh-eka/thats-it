@@ -13,7 +13,7 @@ body {
 }
 
 .gutter {
-  /* background-color: green; */
+  background-color: green;
   display: inline-block;
   margin: 0;
   margin-top: -26px;
@@ -109,7 +109,7 @@ p.larger {
 p.largest {
   font-size: 65px;
 }
-/* 
+/*
 @media screen and (max-width: 500px) {
   .canvas {
     width: 300px;
