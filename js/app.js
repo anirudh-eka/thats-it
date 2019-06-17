@@ -21,7 +21,7 @@ function app(p) {
                   p.color(0, 68, 255),
                   p.color(118, 0, 137)]
 
-    const periodBottomPosition =  canvasBottom - 15;
+    const periodBottomPosition =  canvasBottom - 13;
     drawBrokenTexts = [
       setupBrokenText(p.select('#myReligion'), canvas.position().y),
       setupBrokenText(p.select('#myCountry'), canvas.position().y),
