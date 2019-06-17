@@ -2,11 +2,11 @@ function app(p) {
   const toRadian = (deg) => deg * (Math.PI / 180)
   const getX = (radius, degInRad) => radius * Math.cos(degInRad)
   const getY = (radius, degInRad) => radius * Math.sin(degInRad)
-  let drawBrokenTexts, updatePeriodPosition;
+  let drawBrokenTexts, updatePeriodPosition, drawQuestionMark;
   let state = {
     drop: false,
     frame: 0,
-    periodPosition: {x: 12, y: 12},
+    periodPosition: {x: 12, y: 65 },
   }
 
   let COLORS;
@@ -20,19 +20,21 @@ function app(p) {
                   p.color(0, 68, 255),
                   p.color(118, 0, 137)]
 
-    state.periodBottomPosition = canvas.size().height - 9
+    const periodBottomPosition = canvas.size().height - 9
     drawBrokenTexts = [
       setupBrokenText(p.select('#myReligion'), canvas.position().y),
       setupBrokenText(p.select('#myCountry'), canvas.position().y),
       setupBrokenText(p.select('#myBlank'), canvas.position().y)
     ]
 
-    updatePeriodPosition = setupPeriodPositionUpdate(state.periodBottomPosition)
+    updatePeriodPosition = setupPeriodPositionUpdate(state.periodPosition.y, periodBottomPosition)
+    drawQuestionMark = setupQuestionMark(state.periodPosition.x)
 
   }
 
   p.draw = () => {
     p.background(255, 90);
+    drawQuestionMark()
     p.noStroke()
 
     // setters
@@ -49,8 +51,8 @@ function app(p) {
   p.mouseWheel = () => state.drop = true
   p.touchEnded = () => state.drop = true
 
-  function setupPeriodPositionUpdate(bottomPosition) {
-    const easeOut = (t) => bottomPosition * p.bezierPoint(0, 0, 2, 1, t) + 12
+  function setupPeriodPositionUpdate(initialPosition, bottomPosition) {
+    const easeOut = (t) => bottomPosition * p.bezierPoint(0, 0, 2, 1, t) + initialPosition
     let t = 0
     return function(updateY, y, drop) {
       if(drop && y < bottomPosition) {
@@ -60,15 +62,39 @@ function app(p) {
     }
   }
 
-  // function updatePeriodPosition(update, y, drop, bottomPosition) {
-  //   if(drop && y < bottomPosition) {
-  //     const t = t + 0.1
-  //       console.log(bottomPosition * p.bezierPoint(0, 0, 0.58, 1, t))
-  //       const next = bottomPosition * p.bezierPoint(0, 0, 0.58, 1, y/bottomPosition)
-  //
-  //         update(y+1)
-  //   }
-  // }
+  function setupQuestionMark(x) {
+    const y = 45
+    return function() {
+      // p.textSize(55);
+      // p.fill('green')
+      // p.textAlign(p.CENTER, p.CENTER);
+      // p.text("?", x, y)
+
+
+      p.beginShape();
+      p.noFill();
+      p.stroke('black')
+      p.strokeWeight(4)
+      p.vertex(x - 8.5, y - 11)
+      p.bezierVertex(x - 9.5, y - 11,
+                    x - 10.5, y - 22,
+                    x, y - 23.5);
+
+      p.bezierVertex(x + 12, y - 23.5,
+                    x + 10, y - 12,
+                    x + 10, y - 11);
+
+      p.bezierVertex(x+ 10, y - 8,
+                    x + 6, y - 5,
+                    x + 1, y - 1);
+
+      p.bezierVertex(x + 0, y,
+                     x + 0, y+2,
+                     x + 0, y+7);
+      p.endShape();
+
+    }
+  }
 
   function setupBrokenText(text, canvasTop) {
     return function(y, frame) {

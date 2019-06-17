@@ -13,18 +13,18 @@ body {
 }
 
 .gutter {
-  background-color: green;
+  /* background-color: green; */
   display: inline-block;
   margin: 0;
-  margin-top: -26px;
+  /* margin-top: Z-26px; */
   border: 0;
-  height: 801px;
+  height: 845px;
   width: 25px;
   vertical-align: top;
 }
 
 .blank-space {
-  height: 240px;
+  height: 314px
   /* background-color: red; */
 }
 
