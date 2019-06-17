@@ -52,7 +52,7 @@ function app(p) {
   p.touchEnded = () => state.drop = true
 
   function setupPeriodPositionUpdate(initialPosition, bottomPosition) {
-    const easeOut = (t) => bottomPosition * p.bezierPoint(0, 0, 2, 1, t) + initialPosition
+    const easeOut = (t) => bottomPosition * p.bezierPoint(0, 1, 1, 1, t) + initialPosition
     let t = 0
     return function(updateY, y, drop) {
       if(drop && y < bottomPosition) {
