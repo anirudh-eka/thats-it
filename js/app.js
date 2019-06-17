@@ -12,7 +12,8 @@ function app(p) {
   let COLORS;
 
   p.setup = () => {
-    const canvas = p.createCanvas(p.select('#p5').size().width, p.select('#p5').size().height);
+    const canvasBottom = (p.select('#thatsIt').position().y + p.select('#thatsIt').size().height) - p.select('#p5').position().y
+    const canvas = p.createCanvas(p.select('#p5').size().width, canvasBottom);
     COLORS = [p.color(255, 140, 0),
                   p.color(231, 0, 0),
                   p.color(255, 239, 0),
@@ -20,7 +21,7 @@ function app(p) {
                   p.color(0, 68, 255),
                   p.color(118, 0, 137)]
 
-    const periodBottomPosition = canvas.size().height - 9
+    const periodBottomPosition =  canvasBottom - 15;
     drawBrokenTexts = [
       setupBrokenText(p.select('#myReligion'), canvas.position().y),
       setupBrokenText(p.select('#myCountry'), canvas.position().y),
@@ -29,7 +30,6 @@ function app(p) {
 
     updatePeriodPosition = setupPeriodPositionUpdate(state.periodPosition.y, periodBottomPosition)
     drawQuestionMark = setupQuestionMark(state.periodPosition.x)
-
   }
 
   p.draw = () => {
